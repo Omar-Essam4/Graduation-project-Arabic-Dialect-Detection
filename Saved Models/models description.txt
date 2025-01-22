@@ -1,0 +1,5 @@
+LSTm_100,		batch size 128,		f1 score 0.367%
+LSTM_2,			batch size 256,		f1 score 0.422%	
+LSTm_selfattention2, 	batch size 256,		f1 score 0.454%
+LSTm_selfattention22, 	batch size 256,		f1 score 0.459%
+LSTm_selfattention24,	batch size 128,		f1 score 0.466%
