@@ -1,2 +1,10 @@
-model safetensors link
-https://drive.google.com/file/d/1iiPf5ZxortFJNQbYoQy2aCECSJeUPx60/view?usp=drive_link
+Models saved on huggingface
+
+E5-Multilingual-Large:
+https://huggingface.co/oahmedd/e5-multilingual
+
+Arabert-v02-twitter
+https://huggingface.co/oahmedd/arabert-twitter
+
+Camelbert-DA
+https://huggingface.co/oahmedd/camelbertDA
