@@ -24,8 +24,6 @@ country_images = {
     "Yemen": "ye", "Bahrain": "bh", "Algeria": "alg",  "United Arab Emirates": "ae", "Tunisia": "tn", "Libya": "ly"
 }
 
-
-# Load model and tokenizer (assumes files are in the same directory as the app)
 MODEL_DIR = "oahmedd/marbertv2_finetuned_on_QADI"
 preprocessing_model = "aubmindlab/bert-base-arabertv02-twitter"
 
