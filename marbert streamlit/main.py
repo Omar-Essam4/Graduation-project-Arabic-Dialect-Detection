@@ -30,7 +30,7 @@ MODEL_DIR = "oahmedd/marbertv2_finetuned_on_QADI"
 preprocessing_model = "aubmindlab/bert-base-arabertv02-twitter"
 
 def load_model():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR, token=token)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR, token=token, trust_remote_code=True)
     model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR, token=token)
     preprocessor = ArabertPreprocessor(model_name=preprocessing_model)
     model.eval()
