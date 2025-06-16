@@ -59,5 +59,4 @@ if st.button("تحليل اللهجة"):
     if not text.strip():
         st.warning("يرجى إدخال نص.")
     else:
-        # Preprocess, tokenize, predict
         predict()
