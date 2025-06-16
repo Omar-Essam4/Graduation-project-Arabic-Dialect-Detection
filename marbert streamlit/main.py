@@ -2,8 +2,15 @@ import streamlit as st
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from arabert.preprocess import ArabertPreprocessor
 import torch
-torch.classes.__path__ = []
+from huggingface_hub import login
 import os
+from dotenv import load_dotenv
+torch.classes.__path__ = []
+
+load_dotenv("token.env")
+
+token = os.getenv("HF_TOKEN")
+login(token=os.getenv("HF_TOKEN"))
 
 DIALECT_LABELS = [
     "Oman", "Sudan", "Saudi Arabia", "Kuwait", "Qatar", "Lebanon", "Jordan", 
@@ -19,13 +26,12 @@ country_images = {
 
 
 # Load model and tokenizer (assumes files are in the same directory as the app)
-MODEL_NAME = "UBC-NLP/MARBERTv2"
-MODEL_DIR = os.path.abspath("marbertv2 ft")
+MODEL_DIR = "oahmedd/marbertv2_finetuned_on_QADI"
 preprocessing_model = "aubmindlab/bert-base-arabertv02-twitter"
 
 def load_model():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-    model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR, token=token)
+    model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR, token=token)
     preprocessor = ArabertPreprocessor(model_name=preprocessing_model)
     model.eval()
     return tokenizer, model, preprocessor
