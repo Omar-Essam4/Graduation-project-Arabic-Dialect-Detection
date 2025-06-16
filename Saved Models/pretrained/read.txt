@@ -8,3 +8,9 @@ https://huggingface.co/oahmedd/arabert-twitter
 
 Camelbert-DA
 https://huggingface.co/oahmedd/camelbertDA
+
+Arbertv2
+https://huggingface.co/oahmedd/arbertv2_finetuned_on_QADI
+
+Marbertv2
+https://huggingface.co/oahmedd/marbertv2_finetuned_on_QADI
