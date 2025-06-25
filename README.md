@@ -6,7 +6,7 @@ To try the inference of the Marbert open the marbert streamlit folder with any I
 After opening the folder create a file and name it token.env add your hugging face token inside it without any ""
 
 Install the following libraries in the terminal
-```pip install streamlit transformers torch arabert huggingface_hub os dotenv```
+```pip install streamlit transformers torch arabert huggingface_hub os dotenv, google-genai```
 
 To run the streamlit app type ```streamlit run main.py```
 
