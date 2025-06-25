@@ -81,14 +81,14 @@ def predict():
     with col2:
         st.success(f"Dialect: **{predicted_dialect}**")
 
-        # response_textarea = st.empty()
-        # full_response = ""
+        response_textarea = st.empty()
+        full_response = ""
 
-        # with st.spinner("Generating response..."):
-        #     for chunk in response:
-        #         if chunk.text:
-        #             full_response += chunk.text
-        #             response_textarea.write(full_response)
+        with st.spinner("Generating response..."):
+            for chunk in response:
+                if chunk.text:
+                    full_response += chunk.text
+                    response_textarea.write(full_response)
 
 st.title("Arabic Dialect Detection")
 text = st.text_area("أدخل نصًا بالعربية", height=100)
