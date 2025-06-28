@@ -5,13 +5,11 @@ import torch
 from huggingface_hub import login
 import os
 from dotenv import load_dotenv
-from google import genai
 torch.classes.__path__ = []
 
 load_dotenv("token.env")
 
 token = os.getenv("HF_TOKEN")
-gemma_token = os.getenv("GOOGLE_GEMINI_API")
 login(token=os.getenv("HF_TOKEN"))
 
 client = genai.Client(api_key=gemma_token)
@@ -39,16 +37,6 @@ MODEL_DIR = "oahmedd/marbertv2_finetuned_on_QADI"
 # MODEL_DIR = "oahmedd/quantized_marbert_8bit"
 preprocessing_model = "aubmindlab/bert-base-arabertv02-twitter"
 
-def format_prompt(text, predicted_dialect):
-    prompt = f"""
-    اجب علي السؤال التالي باللهجة: {predicted_dialect}
-    **ملاحظة**
-    لا تشرح، لا تترجم، لا تستخدم الفصحي. فقط اجب باللهجة المطلوبة
-
-    {text}
-    """
-    return prompt
-
 def load_model():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR, token=token, trust_remote_code=True)
     model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR, num_labels=18, token=token)
@@ -68,27 +56,12 @@ def predict():
         pred = torch.argmax(logits, dim=1).item()
     predicted_dialect = DIALECT_LABELS[pred]
     arabic_label = DIALECT_LABELS_ARABIC[pred]
-
-    # prompt = format_prompt(text, arabic_label)
-    # response = client.models.generate_content_stream(
-    #     model="gemma-3-1b-it",
-    #     contents=prompt
-    # )
     
     col1, col2 = st.columns([1, 4])
     with col1:
         st.image(f"./images/{country_images[predicted_dialect]}.png")
     with col2:
         st.success(f"Dialect: **{predicted_dialect}**")
-
-        response_textarea = st.empty()
-        full_response = ""
-
-        with st.spinner("Generating response..."):
-            for chunk in response:
-                if chunk.text:
-                    full_response += chunk.text
-                    response_textarea.write(full_response)
 
 st.title("Arabic Dialect Detection")
 text = st.text_area("أدخل نصًا بالعربية", height=100)
